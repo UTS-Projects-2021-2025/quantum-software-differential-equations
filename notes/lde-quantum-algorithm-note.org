@@ -1,0 +1,9 @@
+#+title: LDE Quantum Algorithm Note
+
+* Linear Differential Equations (LDE)
+
+Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
+
+\begin{align}
+i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H}\ket{\Psi(t)}
+\end{align}
