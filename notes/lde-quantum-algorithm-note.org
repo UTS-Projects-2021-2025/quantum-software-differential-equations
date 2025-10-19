@@ -7,3 +7,11 @@ Recall that a differential equation that is written in terms of it's derivative.
 \begin{align}
 i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H}\ket{\Psi(t)}
 \end{align}
+
+A linear differential equation (LDE) is an equation where each derivative
+
+\begin{align}
+c_{0}f(x) + c_{1}\frac{df(x)}{dx} + c_{2}\frac{df^{2}(x)}{dx^{2}}\cdots c_{k-1}\frac{df^{k-1}(x)}{dx^{k-1}} + c_{k} = 0
+\end{align}
+
+Solving LDE's is incredibly important in material science, physics and economics.
