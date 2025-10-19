@@ -1,7 +1,5 @@
 #+title: LDE Quantum Algorithm Note
 
-* Linear Differential Equations (LDE)
-
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
 \begin{align}
@@ -15,3 +13,18 @@ c_{0}f(x) + c_{1}\frac{df(x)}{dx} + c_{2}\frac{df^{2}(x)}{dx^{2}}\cdots c_{k-1}\
 \end{align}
 
 Solving LDE's is incredibly important in material science, physics and economics.
+
+Since solving differential equations plays such an important role in many fields of mathematics, science and economics, there are several tools that are classically well suited to solving differential equations.
+
+* Differential Equations and Computation
+
+Differential equations form the backbone of many real world tasks in material science and quantitative finance. Therefore in computational algebra, there has been many different methods studied to efficiently solve differential equations. 
+
+One of the first problems is understanding what it means to be /efficient/ in solving linear differential equations. There are many different approaches to solving LDE's where efficiency differs depending on the use case. They can be solved symbolically/algebraically or numerically for example.
+
+There are several computer algebra systems that are quite good at solving differential equations, such as sagemaths, USyd Magma, Wolfram Mathematica and Matlab for example.
+
+** Quantum Advantage
+
+
+
