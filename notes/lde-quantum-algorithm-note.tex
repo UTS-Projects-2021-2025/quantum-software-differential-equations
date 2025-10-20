@@ -1,5 +1,5 @@
-%& /home/emendoza/.config/emacs/.local/cache/org/persist/77/a4c521-3c30-403a-ade4-5efd010defb5-84b7124aefedcdcaa21b527f6d752364
-% Created 2025-10-20 Mon 15:26
+%& /Users/emendoza/.config/emacs/.local/cache/org/persist/e0/497cb0-7f17-404b-85a7-9d29d259348f-208884c5413608ba9ee03fb92ac70dee
+% Created 2025-10-20 Mon 23:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -41,7 +41,7 @@
 
 Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimensional vector space over \(\F\).
 \section{Summary and Key Ideas}
-\label{sec:orge21faa0}
+\label{sec:org13d4ac1}
 \begin{itemize}
 \item Quantum computers can numerically solve LDE's in \(O(\log n)\) time where \(n\) is the dimension of a vector space, which takes \(O(n^{3})\) time classically.
 \item This provides an exponential speed up which is due to quantum computers being able to efficiently solve systems of linear equations.
@@ -50,7 +50,7 @@ Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimen
 \item The cost of decomposing a non-unitary matrix as a product of unitaries. Computational cost of Gram-Schmidt?
 \end{itemize}
 \section{The Algorithm}
-\label{sec:orgeb0079a}
+\label{sec:org1462935}
 Our goal is to solve the Harmonic oscilator equation using a quantum algorithm,
 
 \begin{equation}
@@ -70,8 +70,51 @@ where
 \begin{equation}
 A = \begin{bmatrix}0 & 1\\ -\omega^{2} & 0\end{bmatrix}
 \end{equation}
+
+This equation can be solved symbolically to give us the following equation,
+
+\begin{equation}
+v(x) = e^{Ax}v(0)
+\end{equation}
+where \(v(0) = \begin{bmatrix}1 \\ 1\end{bmatrix}\) as per our initial equations.
+
+Notice that when the Harmonic frequency \(\omega = 1\), our matrix \(A\) is unitary, in this case we denote the matrix \(A = U\).
+
+We can numerically approximate \(v(x)\) to an approximation order \(k\) by truncating it's Taylor series as follows,
+
+\begin{equation}
+v(x) \approx \sum^{k}_{m=0} \frac{(Ut)^{m}}{m!}v(0)
+\end{equation}
+\subsection{The Quantum Circuit}
+\label{sec:org98da7c2}
+\subsubsection{Goal}
+\label{sec:org3abc678}
+Let \(A = \begin{bmatrix}0 & 1\\ -1 & 0\end{bmatrix}\), and \(u = f(0) = \begin{bmatrix}1\\ 1\end{bmatrix}\). Then we want to solve the equation,
+
+\begin{equation}
+f(t)\approx \sum^{k}_{m=0}\frac{(At)^{m}}{m!}f(0)
+\end{equation}
+
+This equation can be described by quantum states as follows. Let \(\ket{u}=\sum_{j\in \{0,1\}}\frac{u_{j}}{||u||}\ket{j}=\ket{+}\), and since \(A\) is unitary \(||A||=1\), which we can denote \(U=A\).
+
+\begin{equation}
+\ket{f(t)}\approx \sum^{k}_{m=0}\frac{||u||(Ut)^{m}}{m!}\ket{u}
+\end{equation}
+
+Then if we set a constant \(c_{m=||u||\frac{t^{m}}{m!}\), we can obtain the following equation which we claim can be simulated efficiently on a quantum computer.
+
+\begin{equation}
+\ket{f(t)}\approx \frac{1}{c^{2}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
+\end{equation}
+where \(c = \sqrt{\sum c_{m}}\).
+\subsubsection{{\bfseries\sffamily TODO} The Circuit}
+\label{sec:org00f6fb3}
+
+Since our operator \(U\) is a unitary we don't need to worry about dealing with a non-unitary implementation of the quantum circuit making things significantly easier.
+
+Let \(O_{m} = ||v(0)||(||U||x)^{m}/m!\)
 \section{Linear Differential Equations Background}
-\label{sec:orgd7c8325}
+\label{sec:org267fa90}
 
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
@@ -89,7 +132,7 @@ Solving LDE's is incredibly important in material science, physics and economics
 
 Since solving differential equations plays such an important role in many fields of mathematics, science and economics, there are several tools that are classically well suited to solving differential equations.
 \section{Differential Equations and Computation}
-\label{sec:org6ccb243}
+\label{sec:orgda8dc17}
 
 Differential equations form the backbone of many real world tasks in material science and quantitative finance. Therefore in computational algebra, there has been many different methods studied to efficiently solve differential equations. 
 
@@ -97,14 +140,9 @@ One of the first problems is understanding what it means to be \emph{efficient} 
 
 There are several computer algebra systems that are quite good at solving differential equations, such as sagemaths, USyd Magma, Wolfram Mathematica and Matlab for example.
 \subsection{Quantum Advantage}
-\label{sec:orgebf6c43}
-\section{Quantum Circuit for Solving first-order LDE's}
-\label{sec:org97aa52d}
+\label{sec:org845ae24}
 
-Given a function \(f : \F \to \F^{n}\), a first order linear differential equation can be written as
-
-\begin{align}
-\frac{df(t)}{dt} = Af(t) + b
-\end{align}
-for some \(n\times n\) matrix \(A\) and a vector \(b\in \F^{n}\).
+\begin{itemize}
+\item \href{https://www.wolfram.com/solutions/industry/materials-science/}{Mathematica use in material science}
+\end{itemize}
 \end{document}

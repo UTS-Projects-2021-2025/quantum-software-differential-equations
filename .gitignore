@@ -4,3 +4,9 @@
 tmp/
 
 .ipynb_checkpoints/
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.toc

@@ -46,8 +46,31 @@ v(x) \approx \sum^{k}_{m=0} \frac{(Ut)^{m}}{m!}v(0)
 \end{equation}
 
 ** The Quantum Circuit
+*** Goal
+Let \(A = \begin{bmatrix}0 & 1\\ -1 & 0\end{bmatrix}\), and \(u = f(0) = \begin{bmatrix}1\\ 1\end{bmatrix}\). Then we want to solve the equation,
+
+\begin{equation}
+f(t)\approx \sum^{k}_{m=0}\frac{(At)^{m}}{m!}f(0)
+\end{equation}
+
+This equation can be described by quantum states as follows. Let \(\ket{u}=\sum_{j\in \{0,1\}}\frac{u_{j}}{||u||}\ket{j}=\ket{+}\), and since \(A\) is unitary \(||A||=1\), which we can denote \(U=A\).
+
+\begin{equation}
+\ket{f(t)}\approx \sum^{k}_{m=0}\frac{||u||(Ut)^{m}}{m!}\ket{u}
+\end{equation}
+
+Then if we set a constant \(c_{m=||u||\frac{t^{m}}{m!}\), we can obtain the following equation which we claim can be simulated efficiently on a quantum computer.
+
+\begin{equation}
+\ket{f(t)}\approx \frac{1}{c^{2}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
+\end{equation}
+where \(c = \sqrt{\sum c_{m}}\).
+
+*** TODO The Circuit
+
 Since our operator \(U\) is a unitary we don't need to worry about dealing with a non-unitary implementation of the quantum circuit making things significantly easier.
 
+Let \(O_{m} = ||v(0)||(||U||x)^{m}/m!\)
 
 * Linear Differential Equations Background
 
@@ -77,12 +100,4 @@ There are several computer algebra systems that are quite good at solving differ
 
 ** Quantum Advantage
 
-
-* Quantum Circuit for Solving first-order LDE's
-
-Given a function \(f : \F \to \F^{n}\), a first order linear differential equation can be written as
-
-\begin{align}
-\frac{df(t)}{dt} = Af(t) + b
-\end{align}
-for some \(n\times n\) matrix \(A\) and a vector \(b\in \F^{n}\).
+- [[https://www.wolfram.com/solutions/industry/materials-science/][Mathematica use in material science]] 
