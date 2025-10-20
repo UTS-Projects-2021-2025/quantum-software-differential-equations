@@ -30,7 +30,23 @@ where
 A = \begin{bmatrix}0 & 1\\ -\omega^{2} & 0\end{bmatrix}
 \end{equation}
 
+This equation can be solved symbolically to give us the following equation,
 
+\begin{equation}
+v(x) = e^{Ax}v(0)
+\end{equation}
+where \(v(0) = \begin{bmatrix}1 \\ 1\end{bmatrix}\) as per our initial equations.
+
+Notice that when the Harmonic frequency \(\omega = 1\), our matrix \(A\) is unitary, in this case we denote the matrix \(A = U\).
+
+We can numerically approximate \(v(x)\) to an approximation order \(k\) by truncating it's Taylor series as follows,
+
+\begin{equation}
+v(x) \approx \sum^{k}_{m=0} \frac{(Ut)^{m}}{m!}v(0)
+\end{equation}
+
+** The Quantum Circuit
+Since our operator \(U\) is a unitary we don't need to worry about dealing with a non-unitary implementation of the quantum circuit making things significantly easier.
 
 
 * Linear Differential Equations Background
