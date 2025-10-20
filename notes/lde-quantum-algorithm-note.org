@@ -1,5 +1,7 @@
 #+title: LDE Quantum Algorithm Note
 
+Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimensional vector space over \(\F\).
+
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
 \begin{align}
@@ -27,4 +29,11 @@ There are several computer algebra systems that are quite good at solving differ
 ** Quantum Advantage
 
 
+* Quantum Circuit for Solving first-order LDE's
 
+Given a function \(f : \F \to \F^{n}\), a first order linear differential equation can be written as
+
+\begin{align}
+\frac{df(t)}{dt} = Af(t) + b
+\end{align}
+for some \(n\times n\) matrix \(A\) and a vector \(b\in \F^{n}\).
