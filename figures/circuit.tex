@@ -1,0 +1,82 @@
+\documentclass[border=6pt]{standalone}
+
+\usepackage{tikz}
+
+\usetikzlibrary{quantikz2}
+
+\begin{document}
+
+\begin{quantikz}
+    % Register block initialized to |0⟩^T
+    \lstick[wires=4]{$\ket{0}^{\otimes T}$} & \gate[wires=3]{V} & \qw \\
+    && \qw \\
+    && \qw \\
+    & \vdots && \\
+    \draw[dashed] (-0.5,-1.2) -- (3.5,-1.2);
+    && \qw \\
+    \lstick[wires=2]{$\ket{\psi}$} & \qw & \qw \\
+    & \qw & \qw
+\end{quantikz}
+
+%\begin{quantikz}[row sep={0.9cm,between origins}, column sep=0.9cm]
+
+% \begin{quantikz}
+% % ---------- WORK REGISTER (2 qubits, input |psi>) ----------
+% \lstick[wires=2]{\ket{\psi}}
+%   & \gate{U_1} \gategroup[wires=2,steps=4,style={dashed,rounded corners,inner xsep=2pt,inner ysep=2pt}, 
+%                           background, label style={label position=west,anchor=east,yshift=0.2cm}]{Work register}
+%   & \ctrl{2} 
+%   & \qw
+%   & \meter{} & \cw \\
+%   & \gate{U_2}
+%   & \ctrl{1}
+%   & \qw
+%   & \qw & \qw
+% \end{quantikz}
+
+% ---------- ANCILLA REGISTER (2 qubits, labeled and in |0>) ----------
+% \lstick{$\ket{0}$}
+%   & \qw \gategroup[wires=2,steps=4,style={dashed,rounded corners,inner xsep=2pt,inner ysep=2pt},
+%                    background, label style={label position=west,anchor=east,yshift=0.2cm}]{Ancilla register $\big(\ket{0}^{\otimes 2}\big)$}
+%   & \targ{}
+%   & \gate{R_z(\theta)}
+%   & \qw & \qw \\
+% %
+% \lstick{$\ket{0}$}
+%   & \gate{H}
+%   & \targ{}
+%   & \qw
+%   & \meter{} & \cw \\
+
+% \begin{quantikz}
+% \lstick{\ket{0}} &&&&& \\
+% &&&&& \\
+% \lstick[wires=2]{\ket{0}} \\ \gate{U_1} \gategroup[wires=2,steps=4,style={dashed,rounded corners,inner xsep=2pt,inner ysep=2pt}, 
+%   & \ctrl{2} 
+%   & \qw
+%   &
+%   & \meter{} & \cw \\
+
+%  %  % ---------- WORK REGISTER (2 qubits, input |psi>) ----------
+
+% %   \lstick[wires=2]{\textbf{Work} \\ $\ket{\psi}$}
+% %   & \gate{U_1} \gategroup[wires=2,steps=4,style={dashed,rounded corners,inner xsep=2pt,inner ysep=2pt}, 
+% %                           background, label style={label position=west,anchor=east,yshift=0.2cm}]{Work register}
+% %   & \ctrl{2} 
+% %   & \qw
+% %   & \meter{} & \cw \\
+% % %
+% % & \gate{U_2}
+% %   & \ctrl{1}
+% %   & \qw
+% %   & \qw & \qw \\
+% &&&&& 
+% \end{quantikz}
+
+% \begin{quantikz}[row sep={0.7cm,between origins}, column sep=0.6cm]
+% \lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \barrier[0.7em]{entangle} & \qw & \meter{} & \cw \\
+% \lstick{$\ket{0}$} & \qw       & \targ{}  &                            & \gate{S} & \swap{1} & \qw \\
+% \lstick{$\ket{0}$} & \gate{X}  & \ctrl{-1}&                            & \gate{R_y(\phi)} & \targX{} & \qw
+% \end{quantikz}
+
+\end{document}
