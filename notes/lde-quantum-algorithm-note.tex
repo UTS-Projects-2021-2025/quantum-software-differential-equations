@@ -1,5 +1,5 @@
-%& /home/emendoza/.config/emacs/.local/cache/org/persist/f4/14138b-a184-42b4-ab37-3bfb904304cf-84b7124aefedcdcaa21b527f6d752364
-% Created 2025-10-19 Sun 13:00
+%& /home/emendoza/.config/emacs/.local/cache/org/persist/77/a4c521-3c30-403a-ade4-5efd010defb5-84b7124aefedcdcaa21b527f6d752364
+% Created 2025-10-20 Mon 15:26
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -39,6 +39,40 @@
 \maketitle
 \tableofcontents
 
+Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimensional vector space over \(\F\).
+\section{Summary and Key Ideas}
+\label{sec:orge21faa0}
+\begin{itemize}
+\item Quantum computers can numerically solve LDE's in \(O(\log n)\) time where \(n\) is the dimension of a vector space, which takes \(O(n^{3})\) time classically.
+\item This provides an exponential speed up which is due to quantum computers being able to efficiently solve systems of linear equations.
+\item This speedup has some caveats, such as whether an exponential speedup for solving linear differential equations outweighs the costs of using quantum computers in the first place. Is it even that hard to solve LDE's classically or is the performance manageable (is waiting a couple hours for a computer to run ok).
+\item How much time does it take to solve an LDE on a classical CAS like SageMath?
+\item The cost of decomposing a non-unitary matrix as a product of unitaries. Computational cost of Gram-Schmidt?
+\end{itemize}
+\section{The Algorithm}
+\label{sec:orgeb0079a}
+Our goal is to solve the Harmonic oscilator equation using a quantum algorithm,
+
+\begin{equation}
+\label{eqn:harmonic}
+f''(x) + \omega^{2}f(x) = 0
+\end{equation}
+with initial conditions \(f(x) = 1, f''(x) = 1\). This can be rewritten as follows,
+
+Let \(\alpha = f(x)\) and \(\beta = f'(x)\). By rewriting Equation \ref{eqn:harmonic} as \(f''(x) = \omega^{2}f(x)\) we obtain the following, \(\frac{d}{dx}\beta = f''(x) = -\omega f(x)\). For a vector \(v = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}\), we obtain the following differential equation.
+
+\begin{equation}
+\frac{d}{dx} v = Av
+\end{equation}
+
+where
+
+\begin{equation}
+A = \begin{bmatrix}0 & 1\\ -\omega^{2} & 0\end{bmatrix}
+\end{equation}
+\section{Linear Differential Equations Background}
+\label{sec:orgd7c8325}
+
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
 \begin{align}
@@ -55,7 +89,7 @@ Solving LDE's is incredibly important in material science, physics and economics
 
 Since solving differential equations plays such an important role in many fields of mathematics, science and economics, there are several tools that are classically well suited to solving differential equations.
 \section{Differential Equations and Computation}
-\label{sec:orgd3a1355}
+\label{sec:org6ccb243}
 
 Differential equations form the backbone of many real world tasks in material science and quantitative finance. Therefore in computational algebra, there has been many different methods studied to efficiently solve differential equations. 
 
@@ -63,5 +97,14 @@ One of the first problems is understanding what it means to be \emph{efficient} 
 
 There are several computer algebra systems that are quite good at solving differential equations, such as sagemaths, USyd Magma, Wolfram Mathematica and Matlab for example.
 \subsection{Quantum Advantage}
-\label{sec:org12f2ce3}
+\label{sec:orgebf6c43}
+\section{Quantum Circuit for Solving first-order LDE's}
+\label{sec:org97aa52d}
+
+Given a function \(f : \F \to \F^{n}\), a first order linear differential equation can be written as
+
+\begin{align}
+\frac{df(t)}{dt} = Af(t) + b
+\end{align}
+for some \(n\times n\) matrix \(A\) and a vector \(b\in \F^{n}\).
 \end{document}

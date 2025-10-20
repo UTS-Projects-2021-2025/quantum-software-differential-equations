@@ -2,6 +2,39 @@
 
 Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimensional vector space over \(\F\).
 
+* Summary and Key Ideas
+  * Quantum computers can numerically solve LDE's in \(O(\log n)\) time where \(n\) is the dimension of a vector space, which takes \(O(n^{3})\) time classically.
+  * This provides an exponential speed up which is due to quantum computers being able to efficiently solve systems of linear equations.
+  * This speedup has some caveats, such as whether an exponential speedup for solving linear differential equations outweighs the costs of using quantum computers in the first place. Is it even that hard to solve LDE's classically or is the performance manageable (is waiting a couple hours for a computer to run ok).
+  * How much time does it take to solve an LDE on a classical CAS like SageMath?
+  * The cost of decomposing a non-unitary matrix as a product of unitaries. Computational cost of Gram-Schmidt?
+
+* The Algorithm
+Our goal is to solve the Harmonic oscilator equation using a quantum algorithm,
+
+#+name: eqn:harmonic
+\begin{equation}
+f''(x) + \omega^{2}f(x) = 0
+\end{equation}
+with initial conditions \(f(x) = 1, f''(x) = 1\). This can be rewritten as follows,
+
+Let \(\alpha = f(x)\) and \(\beta = f'(x)\). By rewriting Equation [[eqn:harmonic]] as \(f''(x) = \omega^{2}f(x)\) we obtain the following, \(\frac{d}{dx}\beta = f''(x) = -\omega f(x)\). For a vector \(v = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}\), we obtain the following differential equation.
+
+\begin{equation}
+\frac{d}{dx} v = Av
+\end{equation}
+
+where
+
+\begin{equation}
+A = \begin{bmatrix}0 & 1\\ -\omega^{2} & 0\end{bmatrix}
+\end{equation}
+
+
+
+
+* Linear Differential Equations Background
+
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
 \begin{align}
