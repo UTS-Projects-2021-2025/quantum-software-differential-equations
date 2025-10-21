@@ -8,11 +8,11 @@
 
 \begin{quantikz}[wire types={q,n,q,q,q,n,q,q}]
 	% Register block initialized to |0⟩^T
-	\lstick[wires=4]{$\ket{0}^{\otimes T}$} & \gate[wires=4]{V}\slice{\ket{\psi_{1}}} & && \ \cdots \ & \ctrl{4}\slice{\ket{\psi_{2}}} & \gate[wires=4]{W}\slice{\ket{\psi_3}}&  \\
+	\lstick[wires=4]{$\ket{0}^{\otimes T}$} & \gate[wires=4]{V}\slice{\ket{\psi_{1}}} & && \ \cdots \ & \ctrl{4}\slice{\ket{\psi_{2}}} & \gate[wires=4]{V^{\dag}}\slice{\ket{\psi_3}}&  \\
 	                                        &                                         &     &&\vdots&&\\
 	&&                                                                                           & \ctrl{4} & \ \cdots \ &&&\\
 	                                        &                                         & \ctrl{4} && \ \cdots \ &&& \\
-	\lstick[wires=4]{$\ket{\phi}$}          & \gate[wires=4]{U_{u}}                   & \gate[wires=4]{U_{0}} & \gate[wires=4]{U_{1}} & \ \ldots \ & \gate[wires=4]{U_{k}} && \meter{}  \\
+	\lstick[wires=4]{$\ket{\phi}$}          & \gate[wires=4]{U_{u}}                   & \gate[wires=4]{U^{0}} & \gate[wires=4]{U^{1}} & \ \ldots \ & \gate[wires=4]{U^{k}} && \meter{}  \\
 	&&&& \ \vdots \ &&& \\
 	&&&& \ \cdots \ &&&\meter{} \\
 	&&&& \ \cdots \ &&&\meter{} 

@@ -62,16 +62,39 @@ This equation can be described by quantum states as follows. Let \(\ket{u}=\sum_
 Then if we set a constant \(c_{m=||u||\frac{t^{m}}{m!}\), we can obtain the following equation which we claim can be simulated efficiently on a quantum computer.
 
 \begin{equation}
-\ket{f(t)}\approx \frac{1}{c^{2}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
+\ket{f(t)}\approx \frac{1}{c^{4}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
 \end{equation}
 where \(c = \sqrt{\sum c_{m}}\).
 
 *** TODO The Circuit
+Let \(U_{u}\) be a unitary matrix that turns the state \(\ket{\varphi}\) into \(\ket{u}\) and \(V\) is the following \(k+1\times k+1\) matrix,
 
-Since our operator \(U\) is a unitary we don't need to worry about dealing with a non-unitary implementation of the quantum circuit making things significantly easier.
+\begin{equation}
+V = \frac{1}{c^{2}}\begin{bmatrix}
+\sqrt{c_{0}} & Q & Q & Q & Q \\
+\sqrt{c_{1}} & Q & Q & Q & Q \\
+\sqrt{c_{2}} & Q & Q & Q & Q\\
+\vdots       & Q & Q & Q & Q\\
+\sqrt{c_{k}} & Q & Q & Q & Q
+\end{bmatrix}
+\end{equation}
+where \(Q\) pads \(V\) to make it into a unitary.
 
-Let \(O_{m} = ||v(0)||(||U||x)^{m}/m!\)
+#+CAPTION: The quantum circuit for solving the harmonic oscillator LDE
+#+NAME: fig:circuit
+#+ATTR_LATEX: :width 7cm
+[[../figures/circuit.png]]
 
+**** Encoding:
+The circuit shown in Figure [[fig:circuit]] has \(T=\log k\) ancilla qubits and a state \(\ket{\varphi}\), with state \(\ket{\psi_{in}}= \ket{0}^{\otimes T}\otimes \ket{\varphi}\). \(U_{u}\) turns \(\ket{\varphi}\) into \(\ket{u}\), and \(V\) leaves the system in the following state,
+
+\begin{equation}
+\ket{\psi_{1}} = \frac{1}{c^{2}}\sum^{k}_{m=0}\sqrt{c_{m}}\ket{m}\otimes\ket{u}
+\end{equation}
+
+**** Entanglement:
+
+Apply a series of controlled operations \(\sum^{k}_{\tau = 0} \)
 * Linear Differential Equations Background
 
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,

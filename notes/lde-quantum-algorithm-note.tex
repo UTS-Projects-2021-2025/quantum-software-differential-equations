@@ -1,5 +1,5 @@
-%& /Users/emendoza/.config/emacs/.local/cache/org/persist/e0/497cb0-7f17-404b-85a7-9d29d259348f-208884c5413608ba9ee03fb92ac70dee
-% Created 2025-10-20 Mon 23:10
+%& /home/emendoza/.config/emacs/.local/cache/org/persist/ee/420a54-8f37-40c0-b135-993ab30f9107-c4f7dccb7eaa21508c93c76d7c2f76f8
+% Created 2025-10-21 Tue 12:56
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -12,11 +12,15 @@
 \usepackage[a4paper,margin=2cm]{geometry}
 
 %% ox-latex features:
-%   !announce-start, !guess-pollyglossia, !guess-babel, !guess-inputenc, maths,
-%   !announce-end.
+%   !announce-start, !guess-pollyglossia, !guess-babel, !guess-inputenc, caption,
+%   maths, image, !announce-end.
+
+\usepackage{capt-of}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+
+\usepackage{graphicx}
 
 %% end ox-latex features
 
@@ -41,7 +45,7 @@
 
 Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimensional vector space over \(\F\).
 \section{Summary and Key Ideas}
-\label{sec:org13d4ac1}
+\label{sec:orge8227c5}
 \begin{itemize}
 \item Quantum computers can numerically solve LDE's in \(O(\log n)\) time where \(n\) is the dimension of a vector space, which takes \(O(n^{3})\) time classically.
 \item This provides an exponential speed up which is due to quantum computers being able to efficiently solve systems of linear equations.
@@ -50,7 +54,7 @@ Let \(\F\) be a field (either \(\R\) or \(\C\)), and \(\F^{n}\) is a \(n\)-dimen
 \item The cost of decomposing a non-unitary matrix as a product of unitaries. Computational cost of Gram-Schmidt?
 \end{itemize}
 \section{The Algorithm}
-\label{sec:org1462935}
+\label{sec:org9d4f238}
 Our goal is to solve the Harmonic oscilator equation using a quantum algorithm,
 
 \begin{equation}
@@ -86,9 +90,9 @@ We can numerically approximate \(v(x)\) to an approximation order \(k\) by trunc
 v(x) \approx \sum^{k}_{m=0} \frac{(Ut)^{m}}{m!}v(0)
 \end{equation}
 \subsection{The Quantum Circuit}
-\label{sec:org98da7c2}
+\label{sec:org56173b6}
 \subsubsection{Goal}
-\label{sec:org3abc678}
+\label{sec:org4a16c94}
 Let \(A = \begin{bmatrix}0 & 1\\ -1 & 0\end{bmatrix}\), and \(u = f(0) = \begin{bmatrix}1\\ 1\end{bmatrix}\). Then we want to solve the equation,
 
 \begin{equation}
@@ -104,17 +108,40 @@ This equation can be described by quantum states as follows. Let \(\ket{u}=\sum_
 Then if we set a constant \(c_{m=||u||\frac{t^{m}}{m!}\), we can obtain the following equation which we claim can be simulated efficiently on a quantum computer.
 
 \begin{equation}
-\ket{f(t)}\approx \frac{1}{c^{2}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
+\ket{f(t)}\approx \frac{1}{c^{4}}\sum^{k}_{m=0}c_{m}U^{m}\ket{u}
 \end{equation}
 where \(c = \sqrt{\sum c_{m}}\).
 \subsubsection{{\bfseries\sffamily TODO} The Circuit}
-\label{sec:org00f6fb3}
+\label{sec:orgcaffe30}
+Let \(U_{u}\) be a unitary matrix that turns the state \(\ket{\varphi}\) into \(\ket{u}\) and \(V\) is the following \(k+1\times k+1\) matrix,
 
-Since our operator \(U\) is a unitary we don't need to worry about dealing with a non-unitary implementation of the quantum circuit making things significantly easier.
+\begin{equation}
+V = \frac{1}{c^{2}}\begin{bmatrix}
+\sqrt{c_{0}} & Q & Q & Q & Q \\
+\sqrt{c_{1}} & Q & Q & Q & Q \\
+\sqrt{c_{2}} & Q & Q & Q & Q\\
+\vdots       & Q & Q & Q & Q\\
+\sqrt{c_{k}} & Q & Q & Q & Q
+\end{bmatrix}
+\end{equation}
+where \(Q\) pads \(V\) to make it into a unitary.
 
-Let \(O_{m} = ||v(0)||(||U||x)^{m}/m!\)
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=7cm]{../figures/circuit.png}
+\caption{\label{fig:circuit}The quantum circuit for solving the harmonic oscillator LDE}
+\end{figure}
+\begin{enumerate}
+\item Encoding:
+\label{sec:orga6b9273}
+The circuit shown in Figure \ref{fig:circuit} has \(T=\log k\) ancilla qubits and a state \(\ket{\varphi}\), with state \(\ket{\psi_{in}}= \ket{0}^{\otimes T}\otimes \ket{\varphi}\). \(U_{u}\) turns \(\ket{\varphi}\) into \(\ket{u}\), and \(V\) leaves the system in the following state,
+
+\begin{equation}
+\ket{\psi_{1}} = \frac{1}{c^{2}}\sum^{k}_{m=0}\sqrt{c_{m}}\ket{m}\otimes\ket{u}
+\end{equation}
+\end{enumerate}
 \section{Linear Differential Equations Background}
-\label{sec:org267fa90}
+\label{sec:orgec2f689}
 
 Recall that a differential equation that is written in terms of it's derivative. For example Schrodinger's equation is a differential equation,
 
@@ -132,7 +159,7 @@ Solving LDE's is incredibly important in material science, physics and economics
 
 Since solving differential equations plays such an important role in many fields of mathematics, science and economics, there are several tools that are classically well suited to solving differential equations.
 \section{Differential Equations and Computation}
-\label{sec:orgda8dc17}
+\label{sec:orge310529}
 
 Differential equations form the backbone of many real world tasks in material science and quantitative finance. Therefore in computational algebra, there has been many different methods studied to efficiently solve differential equations. 
 
@@ -140,7 +167,7 @@ One of the first problems is understanding what it means to be \emph{efficient} 
 
 There are several computer algebra systems that are quite good at solving differential equations, such as sagemaths, USyd Magma, Wolfram Mathematica and Matlab for example.
 \subsection{Quantum Advantage}
-\label{sec:org845ae24}
+\label{sec:orga09fadd}
 
 \begin{itemize}
 \item \href{https://www.wolfram.com/solutions/industry/materials-science/}{Mathematica use in material science}
